@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"../handlers"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
