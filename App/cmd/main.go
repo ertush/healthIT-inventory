@@ -5,8 +5,7 @@ import (
 	"net/http"
 
 	"github.com/ertush/healthIT-inventory/App/pkg/db"
-	"github.com/ertush/healthIT-inventory/App/pkg/handlers/auth"
-	"github.com/ertush/healthIT-inventory/App/pkg/handlers/book"
+	"github.com/ertush/healthIT-inventory/App/pkg/handlers"
 	"github.com/gorilla/mux"
 )
 
