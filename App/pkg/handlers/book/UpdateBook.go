@@ -1,9 +1,9 @@
 package handlers
 
 import (
-	"../handlers"
 	"encoding/json"
 	"fmt"
+	"github.com/ertush/healthIT-inventory/App/pkg/handlers"
 	"io/ioutil"
 	"log"
 	"net/http"

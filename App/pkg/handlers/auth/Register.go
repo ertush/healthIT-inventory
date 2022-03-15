@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"../handlers"
+	"github.com/ertush/healthIT-inventory/App/pkg/handlers"
 	"github.com/ertush/healthIT-inventory/App/pkg/models"
 
 	"github.com/dgrijalva/jwt-go/v4"
