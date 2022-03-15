@@ -1,1 +1,0 @@
-# Official REST API for health-IT Inventory app.
