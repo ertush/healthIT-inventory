@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"../handlers"
 	"github.com/ertush/healthIT-inventory/App/pkg/models"
 
 	"github.com/dgrijalva/jwt-go/v4"
@@ -103,7 +104,7 @@ func User(c *fiber.Ctx) error {
 
 	var user models.User
 
-	database.DB.Where("id = ?", claims.Issuer).First(&user)
+	h.DB.Where("id = ?", claims.Issuer).First(&user)
 
 	return c.JSON(user)
 }

@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"../handlers"
 	"encoding/json"
 	"fmt"
 	"net/http"

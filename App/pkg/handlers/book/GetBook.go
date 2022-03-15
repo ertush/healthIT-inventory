@@ -3,6 +3,7 @@ package handlers
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/ertush/healthIT-inventory/App/pkg/handlers"
 	"net/http"
 	"strconv"
 
