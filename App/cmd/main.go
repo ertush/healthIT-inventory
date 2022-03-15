@@ -4,9 +4,9 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/ertush/healthIT-inventory/App/pkg/db"
+	"github.com/ertush/healthIT-inventory/App/pkg/handlers/book"
 	"github.com/gorilla/mux"
-	"github.com/tutorials/go/crud/pkg/db"
-	"github.com/tutorials/go/crud/pkg/handlers"
 )
 
 func main() {

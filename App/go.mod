@@ -1,4 +1,4 @@
-module github.com/tutorials/go/crud
+module github.com/ertush/healthIT-inventory/App
 
 go 1.16
 

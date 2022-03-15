@@ -6,12 +6,3 @@ type Book struct {
 	Author string `json:"author"`
 	Desc   string `json:"desc"`
 }
-
-type Stationery struct {
-}
-
-type Electronics struct {
-}
-
-type Furniture struct {
-}
