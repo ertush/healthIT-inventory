@@ -27,5 +27,5 @@ func main() {
 	router.HandleFunc("/api/user", h.User).Methods(http.MethodGet)
 
 	log.Println("API is running!")
-	http.ListenAndServe(":4000", router)
+	http.ListenAndServe(":5000", router)
 }
