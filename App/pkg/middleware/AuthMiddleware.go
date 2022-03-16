@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-func Middleware(next http.Handler) http.HandlerFunc {
+func AuthMiddleware(next http.Handler) http.HandlerFunc {
 
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		log.Println("Executing Auth Middleware")

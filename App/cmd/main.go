@@ -14,11 +14,11 @@ func main() {
 	h := handlers.New(DB)
 	router := mux.NewRouter()
 
-	router.HandleFunc("/api/books", Middleware(http.HandleFunc(h.GetAllBooks))).Methods(http.MethodGet)
-	router.HandleFunc("/api/books/{id}", Middleware(http.HandleFunc(h.GetBook))).Methods(http.MethodGet)
-	router.HandleFunc("/api/books", Middleware(http.HandleFunc(h.AddBook))).Methods(http.MethodPost)
-	router.HandleFunc("/api/books/{id}", Middleware(http.HandleFunc(h.UpdateBook))).Methods(http.MethodPut)
-	router.HandleFunc("/api/books/{id}", Middleware(http.HandleFunc(h.DeleteBook))).Methods(http.MethodDelete)
+	router.HandleFunc("/api/books", AuthMiddleware(http.HandleFunc(h.GetAllBooks))).Methods(http.MethodGet)
+	router.HandleFunc("/api/books/{id}", AuthMiddleware(http.HandleFunc(h.GetBook))).Methods(http.MethodGet)
+	router.HandleFunc("/api/books", AuthMiddleware(http.HandleFunc(h.AddBook))).Methods(http.MethodPost)
+	router.HandleFunc("/api/books/{id}", AuthMiddleware(http.HandleFunc(h.UpdateBook))).Methods(http.MethodPut)
+	router.HandleFunc("/api/books/{id}", AuthMiddleware(http.HandleFunc(h.DeleteBook))).Methods(http.MethodDelete)
 
 	// auth endpoints
 	router.HandleFunc("/api/register", h.Register).Methods(http.MethodPost)
