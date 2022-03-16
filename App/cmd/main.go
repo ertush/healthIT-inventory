@@ -19,7 +19,12 @@ func main() {
 	router.HandleFunc("/api/books", h.AddBook).Methods(http.MethodPost)
 	router.HandleFunc("/api/books/{id}", h.UpdateBook).Methods(http.MethodPut)
 	router.HandleFunc("/api/books/{id}", h.DeleteBook).Methods(http.MethodDelete)
+
+	// auth endpoints
 	router.HandleFunc("/api/register", h.Register).Methods(http.MethodPost)
+	router.HandleFunc("/api/login", h.Login).Methods(http.MethodPost)
+	router.HandleFunc("/api/logout", h.Logout).Methods(http.MethodGet)
+	router.HandleFunc("/api/user", h.User).Methods(http.MethodGet)
 
 	log.Println("API is running!")
 	http.ListenAndServe(":4000", router)

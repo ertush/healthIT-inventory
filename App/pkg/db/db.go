@@ -17,7 +17,9 @@ func Init() *gorm.DB {
 		log.Fatalln(err)
 	}
 
+	// Auto migrate DB
 	db.AutoMigrate(&models.Book{})
+	db.AutoMigrate(&models.User{})
 
 	return db
 }
