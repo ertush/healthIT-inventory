@@ -5,23 +5,22 @@ import (
 	"net/http"
 )
 
-func middleware(next http.Handler) http.HandlerFunc {
+func Middleware(next http.Handler) http.HandlerFunc {
+
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		log.Println("Executing Auth Middleware")
 
 		response, err := http.Get("/api/user")
 
-		defer response.Body.Close()
-
-		if err != nil {
+		if err != nil || response.StatusCode != http.StatusOK {
 			code := http.StatusUnauthorized
 			http.Error(w, http.StatusText(code), code)
 			return
 		}
 
-		if response.StatusCode == http.StatusOK {
-			next.ServeHTTP(w, r)
-		}
+		defer response.Body.Close()
+
+		next.ServeHTTP(w, r)
 
 	})
 }
