@@ -30,5 +30,7 @@ func (h handler) AddBook(w http.ResponseWriter, r *http.Request) {
 	// Send a 201 created response
 	w.Header().Add("Content-Type", "application/json")
 	w.WriteHeader(http.StatusCreated)
-	json.NewEncoder(w).Encode("Created")
+	json.NewEncoder(w).Encode(&map[string]string{
+		"message": "Created",
+	})
 }

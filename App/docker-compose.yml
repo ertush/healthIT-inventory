@@ -9,10 +9,30 @@ services:
       - POSTGRES_USER=pg
       - POSTGRES_PASSWORD=pass
       - POSTGRES_DB=crud
+    networks:
+      - backend
     ports:
       - 5432:5432
     volumes:
-      - db:/var/lib/postgresql/data 
+      - db:/var/lib/postgresql/data
+      
+  server:
+    container_name: inventory_api
+    image: golang:1.18.0 
+    build:
+      context: .
+      dockerfile: dockerfile
+    networks:
+      - backend
+    ports:
+      - 4000:4000
 
 volumes:
   db:
+
+networks:
+  backend:
+    # Use a custom driver 
+    driver: bridge
+  
+  
