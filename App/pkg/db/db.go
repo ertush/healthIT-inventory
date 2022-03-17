@@ -20,6 +20,9 @@ func Init() *gorm.DB {
 	// Auto migrate DB
 	db.AutoMigrate(&models.Book{})
 	db.AutoMigrate(&models.User{})
+	db.AutoMigrate(&models.Categories{})
+	db.AutoMigrate(&models.Dispatch{})
+	db.AutoMigrate(&models.Equipment{})
 
 	return db
 }
