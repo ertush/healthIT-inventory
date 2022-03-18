@@ -1,6 +1,7 @@
 package db
 
 import (
+	"fmt"
 	"log"
 
 	"github.com/ertush/healthIT-inventory/App/pkg/models"
@@ -9,10 +10,25 @@ import (
 )
 
 func Init() *gorm.DB {
-	dsn := "host=127.0.0.1 user=pg password=pass dbname=crud port=5432 sslmode=disable "
 
-	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	dbCreds := map[string]string{
+		"user":     "pg",
+		"password": "pass",
+		"dbname":   "crud",
+		"host":     "db",
+		"port":     "5432",
+	}
 
+	url := fmt.Sprintf("postgres://%v:%v@%v:%v/%v?sslmode=disable",
+		dbCreds["user"],
+		dbCreds["password"],
+		dbCreds["host"],
+		dbCreds["port"],
+		dbCreds["dbname"])
+
+	db, err := gorm.Open(postgres.Open(url), &gorm.Config{})
+
+	// Check if DB has connected
 	if err != nil {
 		log.Fatalln(err)
 	}

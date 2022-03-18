@@ -1,38 +1,43 @@
 version: "3.8"
 
 services:
-  database:
+  db:
     container_name: database
-    image: postgres:12.8
+    image: postgres:latest
     restart: always
     environment:
       - POSTGRES_USER=pg
       - POSTGRES_PASSWORD=pass
       - POSTGRES_DB=crud
-    networks:
-      - backend
     ports:
       - 5432:5432
     volumes:
       - db:/var/lib/postgresql/data
-      
-  server:
-    container_name: inventory_api
-    image: golang:1.18.0 
-    build:
-      context: .
-      dockerfile: dockerfile
     networks:
       - backend
+      
+  api:
+    container_name: inventory-api
+    build:
+      context: .
+      dockerfile: ./server/Dockerfile
+    depends_on:
+      - db
+    command: ["./wait-for-it.sh", "db:5432", "--", "server"]
+    links:
+      - db
     ports:
       - 4000:4000
+    networks:
+      - backend
 
 volumes:
   db:
 
 networks:
   backend:
-    # Use a custom driver 
     driver: bridge
-  
+
+
+
   
