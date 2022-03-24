@@ -10,21 +10,21 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func (h handler) DeleteBook(w http.ResponseWriter, r *http.Request) {
+func (h handler) DeleteEquipment(w http.ResponseWriter, r *http.Request) {
 	// Read the dynamic id parameter
 	vars := mux.Vars(r)
 	id, _ := strconv.Atoi(vars["id"])
 
-	// Find the book by Id
+	// Find the Equipment by Id
 
-	var book models.Book
+	var equipment models.Equipment
 
-	if result := h.DB.First(&book, id); result.Error != nil {
+	if result := h.DB.First(&equipment, id); result.Error != nil {
 		fmt.Println(result.Error)
 	}
 
-	// Delete that book
-	h.DB.Delete(&book)
+	// Delete that Equipment
+	h.DB.Delete(&equipment)
 
 	w.Header().Add("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
