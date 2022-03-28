@@ -22,15 +22,27 @@ func main() {
 	router.HandleFunc("/api/books/{id}", h.AuthMiddleware(h.UpdateBook)).Methods(http.MethodPut)
 	router.HandleFunc("/api/books/{id}", h.AuthMiddleware(h.DeleteBook)).Methods(http.MethodDelete)
 
-	//Equipment handlers
+	// Equipment handlers
 	router.HandleFunc("/api/equipment", h.AuthMiddleware(h.AddEquipment)).Methods(http.MethodPost)
 	router.HandleFunc("/api/equipment/{id}", h.AuthMiddleware(h.GetEquipment)).Methods(http.MethodGet)
 	router.HandleFunc("/api/equipment", h.AuthMiddleware(h.GetAllEquipment)).Methods(http.MethodGet)
 	router.HandleFunc("/api/equipment/{id}", h.AuthMiddleware(h.DeleteEquipment)).Methods(http.MethodDelete)
 
-	//Category handlers 
+	// Category handlers
+	router.HandleFunc("/api/category", h.AuthMiddleware(h.GetAllCategories)).Methods(http.MethodGet)
+	router.HandleFunc("/api/category/{id}", h.AuthMiddleware(h.GetCategory)).Methods(http.MethodGet)
+	router.HandleFunc("/api/category", h.AuthMiddleware(h.AddCategory)).Methods(http.MethodPost)
+	router.HandleFunc("/api/category/{id}", h.AuthMiddleware(h.UpdateCategory)).Methods(http.MethodPut)
+	router.HandleFunc("/api/category/{id}", h.AuthMiddleware(h.DeleteCategory)).Methods(http.MethodDelete)
 
-	// auth endpoints
+	// Dispatch handlers
+	router.HandleFunc("/api/dispatch", h.AuthMiddleware(h.GetAllDispatches)).Methods(http.MethodGet)
+	router.HandleFunc("/api/dispatch/{id}", h.AuthMiddleware(h.GetDispatch)).Methods(http.MethodGet)
+	router.HandleFunc("/api/dispatch", h.AuthMiddleware(h.AddDispatch)).Methods(http.MethodPost)
+	router.HandleFunc("/api/dispatch/{id}", h.AuthMiddleware(h.UpdateDispatch)).Methods(http.MethodPut)
+	router.HandleFunc("/api/dispatch/{id}", h.AuthMiddleware(h.DeleteDispatch)).Methods(http.MethodDelete)
+
+	// Auth endpoints
 	router.HandleFunc("/api/register", h.Register).Methods(http.MethodPost)
 	router.HandleFunc("/api/login", h.Login).Methods(http.MethodPost)
 	router.HandleFunc("/api/logout", h.Logout).Methods(http.MethodGet)

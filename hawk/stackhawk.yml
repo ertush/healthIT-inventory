@@ -1,0 +1,25 @@
+# -- stackhawk configuration for Test Inventory --
+app:
+  # -- An applicationId obtained from the StackHawk platform. --
+  applicationId: 85236eac-d1e2-460b-ad64-4791b8da5ca9 # (required)
+  # -- The environment for the applicationId defined in the StackHawk platform. --
+  env: Development # (required)
+  # -- The url of your application to scan --
+  host: http://localhost:4000 # (required)
+
+
+# -- Customized Configuration for GraphQL/SOAP/OpenAPI, add here --
+  openApiConf:
+    filePath: Inventory_REST_2022-03-26.json # OR...
+#     path: /swagger.json
+  autoPolicy: true
+  autoInputVectors: true
+  # Configuration Docs: https://docs.stackhawk.com/hawkscan/configuration/
+
+# -- If Authenticated Scanning is needed, add here --
+  # Authenticated Scanning Docs: https://docs.stackhawk.com/hawkscan/authenticated-scanning.html
+  # Authenticated Scanning Repo: https://github.com/kaakaww/scan-configuration/tree/main/Authentication
+
+# -- Help Section --
+  # Docs: https://docs.stackhawk.com/
+  # Contact Support: support@stackhawk.com
