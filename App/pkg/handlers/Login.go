@@ -1,11 +1,12 @@
 package handlers
 
 import (
+	"encoding/base64"
 	"encoding/json"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/dgrijalva/jwt-go/v4"
@@ -16,16 +17,24 @@ import (
 const SecretKey = "secret"
 
 func (h handler) Login(w http.ResponseWriter, r *http.Request) {
-	var data map[string]string
 
 	defer r.Body.Close()
-	body, err := ioutil.ReadAll(r.Body)
+
+	// reading Header
+	auth := r.Header.Get("Authorization")
+
+	decoded, err := base64.StdEncoding.DecodeString(strings.Split(auth, " ")[1])
 
 	if err != nil {
 		log.Fatalln(err)
 	}
 
-	json.Unmarshal(body, &data)
+	email, passwd := strings.Split(string(decoded), ":")[0], strings.Split(string(decoded), ":")[1]
+
+	data := map[string]string{
+		"email":    email,
+		"password": passwd,
+	}
 
 	var user models.User
 
